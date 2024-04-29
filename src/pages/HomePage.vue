@@ -13,22 +13,16 @@
       style="max-width: 70%"
       class="q-mx-auto"
       >
-
-      <!-- hasil AI -->
-      <!-- <template v-slot:body-cell="cell">
-        <q-td v-if="cell.column.name !== 'shows'">
-          {{ cell.row[cell.column.field] }}
-        </q-td>
-        <q-td v-else>
-          <q-dropdown down>
-            <q-btn flat label="Actions" icon="more_vert" />
-            <template v-slot:dropdown-menu>
-              <q-item @click="onAction(cell.row)">Option 1</q-item>
-              </template>
-          </q-dropdown>
-        </q-td>
-      </template> -->
-      <!-- ////// -->
+      <template v-slot:body-cell-dropdown="props">
+        <q-btn-dropdown
+        :props="props"
+        filled
+        class="btn"
+        type="submit"
+         color="green"
+         @click="Update(props)"
+         style="max-width: 70%"/>
+      </template>
     </q-table>
     </div>
   </div>
@@ -60,6 +54,11 @@ const columns = [
     name: 'shows',
     label: 'Show / Hide',
     field: 'shows'
+  },
+  {
+    name: 'dropdown',
+    label: 'Actions',
+    field: 'dropdown'
   }
 ]
 
@@ -78,5 +77,8 @@ function getMenu () {
   })
 }
 getMenu()
+function Update () {
+
+}
 
 </script>
