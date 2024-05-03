@@ -33,7 +33,7 @@ function login () {
       const token = response.data.admin_token_uuid
       if (token) {
         localStorage.setItem('admin_token_uuid', token)
-        router.push({ path: 'Update' })
+        router.push({ path: 'Home' })
         console.log('Token : ', token)
       } else {
         console.error('Token Not Found', response)

@@ -22,7 +22,7 @@ const api = axios.create({
       for (const index in data) {
         if (Array.isArray(data[index])) {
           for (const indexArray in data[index]) {
-            objData.append(index + [], data[index][indexArray])
+            objData.append(index + '[]', data[index][indexArray])
           }
         } else {
           objData.append(index, data[index])
