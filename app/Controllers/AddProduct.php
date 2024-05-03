@@ -41,7 +41,6 @@ class AddProduct extends BaseController{
         $tokenData = $tokenModel->where('admin_token_uuid', $token)->first();
         $currDate = date('Y-m-d H:i:s');
         $uuid = Uuid::uuid4()->toString();
-        echo($show);
 
         if($show === 'show'){
             $dataShow = true;
