@@ -1,8 +1,8 @@
 <template>
   <div class="q-pa=md">
-    <H4>Product Page</H4>
+    <H4 class="q-mx-xl">Product Page</H4>
     <div class="text-right">
-      <q-btn filled class="btn" type="submit" icon="add" label="Insert Product" color="green" @click="submit()"/>
+      <q-btn filled class="q-mx-xl q-mb-lg" type="submit" icon="add" label="Insert Product" color="green" @click="submit()"/>
     </div>
     <p> </p>
     <div>

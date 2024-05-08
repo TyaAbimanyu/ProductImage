@@ -2,9 +2,9 @@
   <div class="text-center">
     <H2>Selamat Datang Pada Home Page</H2>
   </div>
-  <div class="text-center">
-    <q-btn @click="Order">Order Product</q-btn>
-    <q-btn @click="Insert">Insert Product</q-btn>
+  <div class="text-center q-gutter-x-md">
+    <q-btn @click="Order" color="green">Order Product</q-btn>
+    <q-btn @click="Insert" color="green">Insert Product</q-btn>
   </div>
 </template>
 

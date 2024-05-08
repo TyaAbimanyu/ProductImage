@@ -1,8 +1,8 @@
 <template>
   <div class="q-pa=md">
-    <H4>Order Page</H4>
+    <H4 class="q-mx-xl">Order Page</H4>
     <div class="text-right">
-      <q-btn filled class="btn" type="submit" icon="add" label="Insert Order" color="green" @click="submit()"/>
+      <q-btn filled class="q-mx-xl q-mb-lg" type="submit" icon="add" label="Insert Order" color="green" @click="submit()"/>
     </div>
     <p> </p>
     <div>
@@ -15,8 +15,8 @@
       >
       <template v-slot:body-cell-action="props">
         <q-btn-dropdown
+        class="q-ml-xl"
         filled
-        class="btn"
         type="submit"
          color="green"
          style="max-width: 70%">

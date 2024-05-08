@@ -1,66 +1,65 @@
 <template>
   <div>
-    <h5>Order Insert</h5>
+    <h5 class="q-px-xl">Order Insert</h5>
   </div>
 
-  <div class="text-right">
+  <div class="justify-end row q-gutter-x-md q-px-md">
     <q-btn @click="canceling" color="red">Cancel</q-btn>
     <q-btn @click="submit" color="green">Submit</q-btn>
   </div>
 
   <div>
-    <h6>Cart</h6>
+    <h6 class="q-pl-xl">Cart</h6>
     <q-table
-    :rows="rows"
-    :columns="columns"
-    :row-key="product_title"
-    style="max-width: 90%"
-    class="q-mx-auto"
+      :rows="rows"
+      :columns="columns"
+      :row-key="product_title"
+      style="max-width: 90%"
+      class="q-mx-auto"
     >
-    <template v-slot:body-cell-delete="props">
-    <q-btn :props="props.data" icon="delete" color="red" filled @click="deleteOrder(props.index)"></q-btn>
+      <template v-slot:body-cell-delete="props">
+        <q-btn :props="props.data" icon="delete" color="red" filled @click="deleteOrder(props.index)"></q-btn>
+      </template>
+    </q-table>
 
-    </template>
-  </q-table>
-
-  <div>
-    <!-- h6 disini bakal nyimpen data dari pricenya pake {{ total_prtice }} -->
-    <h6 class="q-ma-none">Total Price Rp. {{allTotalPrice()}}</h6>
-  </div>
+    <div>
+      <h6  class="q-pt-md q-pl-xl">Total Price Rp. {{ allTotalPrice() }}</h6>
+    </div>
 
   </div>
 
-  <div>
+  <div class="form">
     <!-- Space buat bikin Q-form Search -->
     <div>
-      <q-input outlined v-model="search" style="width: 20%;" label="Search">
+      <q-input class="q-pb-md q-pl-xl" outlined v-model="search" style="width: 30%;" label="Search">
         <template v-slot:prepend>
           <q-icon name="search"/>
         </template>
       </q-input>
     </div>
 
-    <div  class="q-mt-xl q-gutter-y-md" style="width: 70%;">
-      <q-card class="q-pa-md" v-for="index in data" :key="index">
+    <div style="width: 100%;" class="column items-center">
+      <q-card class="q-pa-md q-my-md" v-for="index in data" :key="index" style="width: 80%;">
         <div>
-          <h5>{{index.product.title}}</h5>
-          <h6>Quantity
-            <q-btn icon="remove" @click="minus(index)"/>
-            {{ index.quantity }}
-            <q-btn icon="add" @click="plus(index)"/>
-          </h6>
+          <div class="row justify-between">
+            <h5>{{ index.product.title }}</h5>
+            <h6>
+              Quantity
+              <q-btn icon="remove" @click="minus(index)"/>
+              {{ index.quantity }}
+              <q-btn icon="add" @click="plus(index)"/>
+            </h6>
 
-          <h6> Rp. {{index.product.price}}</h6>
-          <div>
-            <q-card class="row q-gutter-md" v-for="item in index.image" :key="item">
-            <q-img :src="'http://localhost:8080/uploads/'+ item.image" :ratio="1">
-              <!-- <q-img>
-                <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg" alt=""> -->
+            <h6> Rp. {{ index.product.price }}</h6>
+          </div>
+          <div class="row">
+            <q-card class="q-mx-sm q-mb-md" v-for="item in index.image" :key="item" style="width: 30%;">
+              <q-img :src="'http://localhost:8080/uploads/' + item.image" >
               </q-img>
             </q-card>
           </div>
           <div class="text-right">
-            <q-btn class="text-right" @click="AddToCart(index)">Add To Cart</q-btn>
+            <q-btn class="q-mr-xl" @click="AddToCart(index)" color="green">Add To Cart</q-btn>
           </div>
         </div>
       </q-card>
@@ -169,7 +168,8 @@ function submit () {
       allTotalPrice: allTotalPrice()
     }).then((response) => {
       console.log(response.data.message)
-      loadDataFromLocalStorage()
+      localStorage.removeItem('cartItem')
+      router.push({ name: 'OrderPage' })
     })
   }).catch((error) => {
     console.error(error.data)
@@ -177,6 +177,7 @@ function submit () {
 }
 function canceling () {
   router.push({ name: 'OrderPage' })
+  localStorage.removeItem('cartItem')
 }
 
 function AddToCart (index) {
