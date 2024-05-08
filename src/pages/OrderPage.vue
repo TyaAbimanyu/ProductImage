@@ -84,7 +84,7 @@ const columns = [
 
 const token = localStorage.getItem('admin_token_uuid')
 
-function getMenu (localToken) {
+function getMenu () {
   api.get('Checker', {
     token
   }).then((response) => {
