@@ -14,7 +14,7 @@
     </div>
     <div class="text-center">
       <q-btn rounded standout type="submit" label="Submit" color="primary" @click="Insert()"/>
-      <q-btn rounded standout type="submit" label="Cancel" color="primary" @click.prevent="router.replace({path:'Home'})"/>
+      <q-btn rounded standout type="submit" label="Cancel" color="primary" @click.prevent="router.replace({path:'Product'})"/>
     </div>
   </div>
 </template>
@@ -58,7 +58,7 @@ function Insert () {
     shape: shape.value
   }).then((response) => {
     console.log(response.data)
-    router.push('Home')
+    router.push('Product')
   }).catch((error) => {
     console.error(error)
   })
