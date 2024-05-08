@@ -22,5 +22,11 @@ $routes->get('/getImage/(:segment)', 'ViewImage::getImage/$1');
 $routes->put('/statusUpdateImage', 'ViewImage::statusUpdateImage');
 $routes->delete('/deleteImage/(:segment)', 'ViewImage::deleteImage/$1');
 $routes->delete('/deletedData/(:segment)', 'ViewProduct::deletedData/$1');
+$routes->delete('/deletedOrder/(:segment)', 'ViewOrder::deletedOrder/$1');
 $routes->get('/getUpdateData/(:segment)', 'ViewProduct::getUpdateProduct/$1');
 $routes->post('/getUpdateData/(:segment)', 'ViewProduct::getUpdateProduct/$1');
+$routes->get('/SearchOrder/(:segment)', 'AddOrder::SearchOrder/$1');
+$routes->get('/getProductData', 'AddOrder::getProductData');
+$routes->get('/getOrder', 'ViewOrder::getOrder');
+$routes->post('/insertOrder', 'AddOrder::insertOrder');
+
