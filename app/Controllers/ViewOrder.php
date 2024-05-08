@@ -33,16 +33,13 @@ class ViewOrder extends BaseController{
         $orderModel = new OrderModel();
         $order = $orderModel->findAll();
 
-        // if($tokenData){
-            
-        // }
-        // return $this->fail('Token is Not Found');
         foreach($order as $orders){
             if(!empty($orders->order_number)){
+                $tanggal = explode(' ', $orders->created_at)[0];
                 $data[] = [
                     'orderId' => $orders->order_uuid,
                     'orderNumber' => $orders->order_number,
-                    'dateTime' => $orders->created_at,
+                    'dateTime' => $tanggal,
                     'totalPrice' => $orders->order_total_price,
                     'status' => $orders->order_status === '1'? 'Paid':'Unpaid',
                 ];

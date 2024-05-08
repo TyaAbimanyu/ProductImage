@@ -84,7 +84,7 @@ class AddOrder extends BaseController{
         if(!empty($totalPrice)){
             $uuid = Uuid::uuid4();
             $orderNumber = date('Ymd').sprintf('%03d',$this->countOrderData()+1);
-            $currDate = date('Y-m-d H:i:s');
+            $currDate = date('Y-m-d');
             $cart = [
                 'order_uuid' => $uuid,
                 'order_number' => $orderNumber,
