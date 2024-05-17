@@ -2,24 +2,21 @@
 
 namespace App\Models;
 
-use App\Entities\Order;
+use App\Entities\MemberToken;
 use CodeIgniter\Model;
 
-class OrderModel extends Model{
-    protected $table = 'order_ms';
-    protected $primaryKey = 'order_id';
-    protected $returnType = Order::class;
+class MemberTokenModel extends Model{
+    protected $table = 'member_token_trs';
+    protected $primaryKey = 'member_token_id';
+    protected $returnType =  MemberToken::class;
     protected $allowedFields = [
         'member_id',
-        'order_uuid',
-        'order_number',
-        'order_total_price',
-        'order_status',
+        'member_token_uuid',
         'created_at'
     ];
-
     protected $useTimeStamps = true;
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';
     protected $deletedField = 'deleted_at';
+
 }

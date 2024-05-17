@@ -35,7 +35,11 @@ class LoginController extends BaseController{
                 $adminTokenModel->insert($tokenData);
                 $adminTokenId = $adminTokenModel->getInsertID();
 
-                return $this->respond(['admin_token_id'=> $adminTokenId, 'admin_token_uuid' => $uuid, 'created_at' => $currDate, 'message' => 'Token Generately Successfully']);
+                return $this->respond([
+                    'admin_token_id'=> $adminTokenId, 
+                    'admin_token_uuid' => $uuid, 
+                    'created_at' => $currDate, 
+                    'message' => 'Token Generately Successfully']);
             }else{
                 return $this->fail('Invalid Email or Password');
             }

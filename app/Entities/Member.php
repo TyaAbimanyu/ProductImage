@@ -3,14 +3,15 @@
 namespace App\Entities;
 use CodeIgniter\Entity\Entity;
 
-class Order extends Entity{
+class Member extends Entity{
     protected $attributes = [
-        'order_id' => null,
         'member_id' => null,
-        'order_uuid' => '',
-        'order_number' => '',
-        'order_total_price' => '',
-        'order_status' => '',
+        'member_uuid' => '',
+        'member_email' => '',
+        'member_password' => '',
+        'member_name' => '',
+        'member_phone' => '',
+        'member_active' => '',
         'created_at' => '',
         'updated_at' => '',
         'deleted_at' => ''

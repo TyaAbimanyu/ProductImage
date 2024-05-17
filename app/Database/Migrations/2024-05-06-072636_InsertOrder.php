@@ -13,6 +13,9 @@ class InsertOrder extends Migration
               'type'           => 'BIGINT',
               'auto_increment' => TRUE
             ],
+            'member_id' => [
+              'type'           => 'BIGINT',
+            ],
             'order_uuid' => [
               'type'       => 'CHAR',
               'constraint' => 36,

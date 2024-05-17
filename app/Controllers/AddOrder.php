@@ -22,6 +22,7 @@ class AddOrder extends BaseController{
             $productData=[
                 'productId' => $product->product_id,
                 'title' => $product->product_title,
+                'description' => $product->product_description,
                 'price' => $product->product_price,
             ];
 
@@ -36,7 +37,6 @@ class AddOrder extends BaseController{
                 'image' => $imageData
             ]);
         }
-        // return $this->respond(['title' => $product->product_title, 'price' => $product->product_price ,'result' => $data]);
         return $this->respond($data);
     }
 

@@ -3,14 +3,13 @@
 namespace App\Entities;
 use CodeIgniter\Entity\Entity;
 
-class Order extends Entity{
+class Cart extends Entity{
+
     protected $attributes = [
-        'order_id' => null,
+        'cart_id' => null,
         'member_id' => null,
-        'order_uuid' => '',
-        'order_number' => '',
-        'order_total_price' => '',
-        'order_status' => '',
+        'cart_uuid' => '',
+        'cart_total_price' => '',
         'created_at' => '',
         'updated_at' => '',
         'deleted_at' => ''
