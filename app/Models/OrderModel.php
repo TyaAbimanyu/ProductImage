@@ -14,6 +14,7 @@ class OrderModel extends Model{
         'order_uuid',
         'order_number',
         'order_total_price',
+        'order_address',
         'order_status',
         'created_at'
     ];

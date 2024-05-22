@@ -17,7 +17,8 @@ class CartItemModel extends Model{
         'cart_item_quantity',
         'cart_item_price',
         'cart_item_total_price',
-        'created_at'
+        'created_at',
+        'updated_at'
     ];
     protected $useTimeStamps = true;
     protected $createdField = 'created_at';

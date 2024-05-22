@@ -10,6 +10,7 @@ class Order extends Entity{
         'order_uuid' => '',
         'order_number' => '',
         'order_total_price' => '',
+        'order_address' => '',
         'order_status' => '',
         'created_at' => '',
         'updated_at' => '',

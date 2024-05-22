@@ -36,5 +36,16 @@ $routes->post('/loginMember', 'LoginMember::loginMember');
 $routes->get('/getImageDetail/(:segment)', 'ViewDetailProduct::getImageDetail/$1');
 $routes->post('/AddToCartDetail', 'AddCartMember::AddToCartDetail');
 $routes->post('/getDataCart', 'ViewCartMember::getDataCart');
-$routes->get('/getDataCart', 'ViewCartMember::getDataCart');
+$routes->post('/updateQuantity', 'ViewCartMember::updateQuantity');
+$routes->post('/deleteDataCart', 'ViewCartMember::deleteDataCart');
+$routes->post('/updateCartTotalPrice', 'ViewCartMember::updateCartTotalPrice');
+$routes->get('/getDataOrder', 'GetDataCheckOut::getDataOrder');
+$routes->post('/getDataOrder', 'GetDataCheckOut::getDataOrder');
+$routes->post('/submitCart', 'GetDataCheckOut::submitCart');
+$routes->get('/getDataSubmit', 'GetCheckOutSubmit::getDataSubmit');
+$routes->put('/setConfirmOrder', 'GetCheckOutSubmit::setConfirmOrder');
+$routes->get('/getDataCheck', 'GetDataConfirm::getDataCheck');
+$routes->post('/paymentSubmit', 'GetDataConfirm::paymentSubmit');
+
+
 
