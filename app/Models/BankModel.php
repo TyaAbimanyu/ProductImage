@@ -13,10 +13,12 @@ class BankModel extends Model{
     protected $allowedFields = [
         'bank_uuid',
         'bank_name',
+        'bank_account_name',
         'bank_account_number',
         'bank_order',
         'bank_show',
-        'created_at'
+        'created_at',
+        'updated_at'
     ];
     protected $useTimeStamps = true;
     protected $createdField = 'created_at';

@@ -47,5 +47,37 @@ $routes->put('/setConfirmOrder', 'GetCheckOutSubmit::setConfirmOrder');
 $routes->get('/getDataCheck', 'GetDataConfirm::getDataCheck');
 $routes->post('/paymentSubmit', 'GetDataConfirm::paymentSubmit');
 
+$routes->group('bank', function($routes){
+    $routes->get('getBankData', 'Bank\BankController::getBankData');
+    $routes->post('insertBankData/', 'Bank\BankController::insertBankData');
+    $routes->put('updateStatusBank/', 'Bank\BankController::updateStatus');
+    $routes->get('getUpdateBank/(:segment)', 'Bank\BankController::getUpdateBank/$1');
+    $routes->put('UpdateBankData/', 'Bank\BankController::UpdateBankData');
+    $routes->delete('deletedBank/(:segment)', 'Bank\BankController::deletedBank/$1');
+
+}); 
+
+$routes->group('member', function($routes){
+    $routes->get('getMemberData/', 'Member\MemberController::getMemberData');
+    $routes->put('updateStatusMember/', 'Member\MemberController::updateStatus');
+    $routes->get('getMemberDetailData/(:segment)', 'Member\MemberDetailController::getMemberDetailData/$1');
+    $routes->get('getMemberOrderData/(:segment)', 'Member\MemberDetailController::getMemberOrderData/$1');
+    $routes->delete('deleteMemberData/(:segment)', 'Member\MemberDetailController::deleteMemberData/$1');
+});
+
+$routes->group('payment', function($routes){
+    $routes->get('getOrderNumber/(:segment)', 'Payment\OrderPaymentConfirmController::getOrderNumber/$1');
+    $routes->put('updateStatusPayment/', 'Payment\OrderPaymentConfirmController::updateStatusPayment');
+    $routes->get('getPaymentData/(:segment)', 'Payment\OrderPaymentConfirmController::getPaymentData/$1');
+    $routes->get('orderData/(:segment)', 'Payment\OrderPaymentConfirmDetailController::orderData/$1');
+    $routes->get('orderPaymentData/(:segment)', 'Payment\OrderPaymentConfirmDetailController::orderPaymentData/$1');
+    $routes->put('updateStatusPaymentApprove/', 'Payment\OrderPaymentConfirmDetailController::updateStatusPaymentApprove');
+    $routes->put('updateStatusPaymentReject/', 'Payment\OrderPaymentConfirmDetailController::updateStatusPaymentReject');
+});
+
+
+
+
+
 
 

@@ -9,6 +9,7 @@ class Bank extends Entity{
         'bank_id' => null,
         'bank_uuid' => '',
         'bank_name' => '',
+        'bank_account_name' => '',
         'bank_account_number' => '',
         'bank_order' => '',
         'bank_show' => '',
