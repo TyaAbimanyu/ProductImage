@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h3 style="text-align: center;">Product Image Insert Page</h3>
+    <h3 style="text-align: center;">Bank Insert / Update Page</h3>
     <q-form @submit="Insert" class="q-gutter-md q-mx-auto" style="max-width: 50%">
-      <q-input rounded standout v-model="title" label="Title"/>
-      <q-input rounded standout v-model="description" label="Description" type="textarea"/>
-      <q-input rounded standout v-model="price" label="Price"/>
+      <q-input rounded standout v-model="bankName" label="Bank Name"/>
+      <q-input rounded standout v-model="accountName" label="Account Name"/>
+      <q-input rounded standout v-model="accountNumber" label="Account Number"/>
       <p></p>
     </q-form>
     <div class="text-center" style="max-width: 60%">
@@ -14,7 +14,7 @@
     </div>
     <div class="text-center">
       <q-btn rounded standout type="submit" label="Submit" color="primary" @click="Insert()"/>
-      <q-btn rounded standout type="submit" label="Cancel" color="primary" @click.prevent="router.push({name:'ProductPage'})"/>
+      <q-btn rounded standout type="submit" label="Cancel" color="primary" @click.prevent="router.push({name:'BankPage'})"/>
     </div>
   </div>
 </template>
@@ -24,10 +24,10 @@ import { ref } from 'vue'
 import { api } from 'src/boot/axios'
 import { useRouter } from 'vue-router'
 
-const title = ref('')
-const description = ref('')
-const price = ref('')
-const shape = ref('hide')
+const accountName = ref('')
+const bankName = ref('')
+const accountNumber = ref('')
+const shape = ref('')
 const router = useRouter()
 const token = localStorage.getItem('admin_token_uuid')
 
@@ -51,14 +51,14 @@ function validate (localToken) {
 }
 validate()
 function Insert () {
-  api.post('Add', {
-    title: title.value,
-    description: description.value,
-    price: price.value,
+  api.post('bank/insertBankData', {
+    bankName: bankName.value,
+    accountName: accountName.value,
+    accountNumber: accountNumber.value,
     shape: shape.value
   }).then((response) => {
     console.log(response.data)
-    router.push('ProductPage')
+    router.push({ name: 'BankPage' })
   }).catch((error) => {
     console.error(error)
   })

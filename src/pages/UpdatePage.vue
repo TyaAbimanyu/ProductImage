@@ -14,7 +14,7 @@
     </div>
     <div class="text-center">
       <q-btn rounded standout type="submit" label="Update" color="primary" @click="Update()"/>
-      <q-btn rounded standout type="submit" label="Cancel" color="primary" @click.prevent="router.replace({name: 'ProductPage'})"/>
+      <q-btn rounded standout type="submit" label="Cancel" color="primary" @click.prevent="router.push({name: 'ProductPage'})"/>
     </div>
   </div>
 </template>

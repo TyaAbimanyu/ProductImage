@@ -33,7 +33,7 @@ function login () {
       const token = response.data.admin_token_uuid
       if (token) {
         localStorage.setItem('admin_token_uuid', token)
-        router.push({ path: 'Home' })
+        router.push({ path: 'Head/' })
         console.log('Token : ', token)
       } else {
         console.error('Token Not Found', response)
@@ -42,9 +42,9 @@ function login () {
       console.error('Login Fail', response.data)
     }
   }).catch((error) => {
-    console.error('Error Signup : ', error.response.data)
-    emailError.value = error.response.data.messages.message.username
-    passwordError.value = error.response.data.messages.message.password
+    console.error('Error Signup : ', error.response)
+    // emailError.value = error.response.data.messages.message.username
+    // passwordError.value = error.response.data.messages.message.password
   })
 }
 

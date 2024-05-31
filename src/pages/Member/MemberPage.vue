@@ -1,9 +1,6 @@
 <template>
   <div class="q-pa=md">
-    <H4 class="q-mx-xl">Order Page</H4>
-    <div class="text-right">
-      <q-btn filled class="q-mx-xl q-mb-lg" type="submit" icon="add" label="Insert Order" color="green" @click="submit()"/>
-    </div>
+    <H4 class="q-mx-xl">Member Page</H4>
     <p> </p>
     <div>
       <q-table
@@ -27,9 +24,9 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-close-popup @click="deleted(props.row)">
+          <q-item clickable v-close-popup @click="status(props.row)">
             <q-item-section>
-              <q-item-label>Delete</q-item-label>
+              <q-item-label>Show/Hide</q-item-label>
             </q-item-section>
           </q-item>
         </q-list>
@@ -46,33 +43,29 @@ import { ref } from 'vue'
 import { api } from 'src/boot/axios'
 import { useRouter } from 'vue-router'
 
-const orderNumber = ref('')
-const dateTime = ref('')
-const totalPrice = ref('')
-const status = ref('')
 const router = useRouter()
 const rows = ref([])
 
 const columns = [
   {
-    name: 'orderNumber',
-    label: 'Order Number',
+    name: 'email',
+    label: 'Email',
     align: 'left',
-    field: 'orderNumber'
+    field: 'email'
   },
   {
-    name: 'dateTime',
-    label: 'Date Time',
-    field: 'dateTime'
+    name: 'name',
+    label: 'Name',
+    field: 'name'
   },
   {
-    name: 'totalPrice',
-    label: 'Total Price',
-    field: 'totalPrice'
+    name: 'numberPhone',
+    label: 'Phone',
+    field: 'numberPhone'
   },
   {
     name: 'status',
-    label: 'Status',
+    label: 'Show / Hide',
     field: 'status'
   },
   {
@@ -90,11 +83,8 @@ function getMenu () {
   }).then((response) => {
     console.log('response axios', response)
     console.log(response.data.success)
-    api.get('getOrder', {
-      orderNumber: orderNumber.value,
-      dateTime: dateTime.value,
-      totalPrice: totalPrice.value,
-      status: status.value
+    api.get('member/getMemberData', {
+
     }).then((response) => {
       rows.value = response.data
     })
@@ -103,29 +93,22 @@ function getMenu () {
   })
 }
 getMenu()
-function submit (localToken) {
-  api.get('Checker', {
-    token: localToken
-  }).then((response) => {
-    console.log('response axios', response)
-    console.log(response.data.success)
-    router.push({ name: 'OrderInsert' })
-  }).catch((error) => {
-    console.error(error.data)
-  })
-}
+
 function detail (data) {
-
+  router.push({ name: 'MemberDetailPage', params: { memberId: data.memberId } })
+  console.log(data)
 }
 
-//  Buat Delete Data tapi nanti setelah insert dan get menu
-function deleted (data) {
-  api.delete('deletedOrder/' + data.orderId, {
-
-  }).then(() => {
+function status (data) {
+  api.put('member/updateStatusMember', {
+    memberId: data.memberId,
+    show: !data.show
+  }).then((response) => {
+    console.log(response.data)
     getMenu()
   }).catch((error) => {
     console.error(error.data)
   })
 }
+
 </script>

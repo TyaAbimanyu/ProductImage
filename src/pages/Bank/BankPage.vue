@@ -1,8 +1,8 @@
 <template>
   <div class="q-pa=md">
-    <H4 class="q-mx-xl">Product Page</H4>
+    <H4 class="q-mx-xl">Bank Page</H4>
     <div class="text-right">
-      <q-btn filled class="q-mx-xl q-mb-lg" type="submit" icon="add" label="Insert Product" color="green" @click="submit()"/>
+      <q-btn filled class="q-mx-xl q-mb-lg" type="submit" icon="add" label="Insert Bank" color="green" @click="submit()"/>
     </div>
     <p> </p>
     <div>
@@ -15,35 +15,29 @@
       >
       <template v-slot:body-cell-action="props">
         <q-btn-dropdown
+        class="q-ml-xl"
         filled
-        class="btn"
         type="submit"
          color="green"
          style="max-width: 70%">
         <q-list>
+          <q-item clickable v-close-popup @click="detail(props.row)">
+            <q-item-section>
+              <q-item-label>Update</q-item-label>
+            </q-item-section>
+          </q-item>
+
           <q-item clickable v-close-popup @click="status(props.row)">
             <q-item-section>
-              <q-item-label>Status</q-item-label>
+              <q-item-label>Show/Hide</q-item-label>
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-close-popup @click="image(props.row)">
+          <q-item clickable v-close-popup @click="deleted(props.row)">
             <q-item-section>
-              <q-item-label>Image</q-item-label>
+              <q-item-label>Delete</q-item-label>
             </q-item-section>
           </q-item>
-
-            <q-item clickable v-close-popup @click="update(props.row)">
-              <q-item-section>
-                <q-item-label>Update</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-close-popup @click="deleted(props.row)">
-              <q-item-section>
-                <q-item-label>Delete</q-item-label>
-              </q-item-section>
-            </q-item>
         </q-list>
         </q-btn-dropdown>
       </template>
@@ -58,28 +52,34 @@ import { ref } from 'vue'
 import { api } from 'src/boot/axios'
 import { useRouter } from 'vue-router'
 
-const title = ref('')
-const price = ref('')
-const shape = ref('')
+// const bankName = ref('')
+// const accountName = ref('')
+// const accountNumber = ref('')
+// const status = ref('')
 const router = useRouter()
 const rows = ref([])
 
 const columns = [
   {
-    name: 'title',
-    label: 'Title',
+    name: 'bankName',
+    label: 'Bank Name',
     align: 'left',
-    field: 'title'
+    field: 'bankName'
   },
   {
-    name: 'price',
-    label: 'Price',
-    field: 'price'
+    name: 'accountName',
+    label: 'Account Name',
+    field: 'accountName'
   },
   {
-    name: 'shows',
+    name: 'accountNumber',
+    label: 'Account Number',
+    field: 'accountNumber'
+  },
+  {
+    name: 'status',
     label: 'Show / Hide',
-    field: 'shows'
+    field: 'status'
   },
   {
     name: 'action',
@@ -90,22 +90,15 @@ const columns = [
 
 const token = localStorage.getItem('admin_token_uuid')
 
-function getMenu (localToken) {
+function getMenu () {
   api.get('Checker', {
     token
   }).then((response) => {
     console.log('response axios', response)
     console.log(response.data.success)
-
-    api.get('ShowMenu', {
-      title: title.value,
-      price: price.value,
-      shape: shape.value
+    api.get('bank/getBankData', {
     }).then((response) => {
       rows.value = response.data
-    }).catch((error) => {
-      console.log(error.response.data)
-      router.push('/')
     })
   }).catch((error) => {
     console.error(error.data)
@@ -118,14 +111,20 @@ function submit (localToken) {
   }).then((response) => {
     console.log('response axios', response)
     console.log(response.data.success)
-    router.push('Product/Insert')
+    router.push({ name: 'InsertBankPage' })
   }).catch((error) => {
     console.error(error.data)
   })
 }
+
+function detail (data) {
+  router.push({ name: 'UpdateBankPage', params: { bankId: data.bankId } })
+  console.log(data)
+}
+
 function status (data) {
-  api.put('StatusUpdate', {
-    productId: data.productId,
+  api.put('bank/updateStatusBank', {
+    bankId: data.bankId,
     show: !data.show
   }).then((response) => {
     console.log(response.data)
@@ -135,18 +134,9 @@ function status (data) {
   })
 }
 
-const update = (data) => {
-  router.push({ name: 'UpdatePage', params: { productId: data.productId } })
-  console.log(data)
-}
-
-const image = (data) => {
-  router.push({ name: 'ImageProductPage', params: { productId: data.productId } })
-  console.log(data)
-}
-
+//  Buat Delete Data tapi nanti setelah insert dan get menu
 function deleted (data) {
-  api.delete('deletedData/' + data.productId, {
+  api.delete('bank/deletedBank/' + data.bankId, {
 
   }).then(() => {
     getMenu()
